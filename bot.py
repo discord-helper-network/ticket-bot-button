@@ -1,3 +1,4 @@
+##Please do not change anything here. All things come into the config.json!
 import asyncio
 import datetime
 import discord
@@ -11,6 +12,7 @@ from discord_slash.utils.manage_components import *
 intents = discord.Intents().default()
 intents.members = True
 
+#Please do not change anything here. All things come into the config.json
 
 intents = discord.Intents().default()
 intents.members = True
@@ -21,11 +23,15 @@ with open('config.json') as f:
     erole = data["EROLE"]
     tcategory = data["TCATEGORY"]
     acategory = data["ACATEGORY"]
+    
+#Please do not change anything here. All things come into the config.json
 
 bot = commands.Bot(intents=intents,command_prefix='!')
 slash=SlashCommand(bot, sync_commands=True)
 DiscordComponents(bot)
-
+#Do not change anything!
+#Do not change anything!
+#Do not change anything!
 
 @bot.event
 async def on_ready():
@@ -51,7 +57,7 @@ async def status_task():
 
 
 global guild
-guild = bot.get_guild(guildid) #GUILDID here
+guild = bot.get_guild(guildid) ##Please do not change anything here. All things come into the config.json
 
 
 
@@ -76,8 +82,8 @@ async def on_interaction(interaction):
     user = interaction.author
     if interaction.component.label == "Ticket öffnen":
 
-        suprole = discord.utils.get(user.guild.roles, name=erole)  # NAME FROM TEAMROLE HERE
-        category = discord.utils.get(user.guild.categories, name=tcategory)  # ticketcategory name here
+        suprole = discord.utils.get(user.guild.roles, name=erole) #Please do not change anything here. All things come into the config.json
+        category = discord.utils.get(user.guild.categories, name=tcategory)  #Please do not change anything here. All things come into the config.json
 
         role = discord.utils.get(user.guild.roles, name="@everyone")
         chan = await user.guild.create_text_channel(name=f'support ticket - {user}',
@@ -104,7 +110,7 @@ async def on_interaction(interaction):
 @bot.command()
 @commands.has_permissions(manage_channels=True)
 async def close(ctx, channel: discord.TextChannel):
-    archivcategory = discord.utils.get(ctx.guild.categories, name=acategory)  # archivcategory name here
+    archivcategory = discord.utils.get(ctx.guild.categories, name=acategory)  #Please do not change anything here. All things come into the config.json
 
     if channel == ctx.channel:
         await ctx.channel.edit(name=f":archiv-{ctx.channel.name}", category=archivcategory)
@@ -116,7 +122,7 @@ async def close(ctx, channel: discord.TextChannel):
     else:
         await ctx.send("Bitte gebe den richtigen Channel zur Sicherheitsabfrage an")
 
-
+#Please do not change anything here. All things come into the config.json
 bot.run(token)
 
 
