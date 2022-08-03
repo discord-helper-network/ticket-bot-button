@@ -109,19 +109,22 @@ async def on_interaction(interaction):
 
 @bot.command()
 @commands.has_permissions(manage_channels=True)
-async def close(ctx, channel: discord.TextChannel):
-    archivcategory = discord.utils.get(ctx.guild.categories, name=acategory)  #Please do not change anything here. All things come into the config.json
-
-    if channel == ctx.channel:
-        await ctx.channel.edit(name=f":archiv-{ctx.channel.name}", category=archivcategory)
-        await ctx.send('Das Ticket wurde Archiviert.')
-
-
-
-
+async def close(ctx, channel: discord.TextChannel=None):
+    archivcategory = discord.utils.get(ctx.guild.categories, name='archiv')  # archivcategory name here
+    if channel == None:
+        await ctx.send("Bitte gebe den Channel zur Sicherheitsabfrage an.")
+        return
+    if "ticket" in ctx.channel.name:
+        if channel == ctx.channel:
+            await ctx.channel.edit(name=f":archiv-{ctx.channel.name}", category=archivcategory)
+            await ctx.send('Das Ticket wurde Archiviert.')
+    
+        else:
+            await ctx.send("Bitte sende den Korrekten Channel zur Sicherheitsabfrage.")
     else:
-        await ctx.send("Bitte gebe den richtigen Channel zur Sicherheitsabfrage an")
+        await ctx.send("Das hier ist kein Ticket! Dieser Command funktioniert nur in einem.", delete_after=20)
 
+        
 #Please do not change anything here. All things come into the config.json
 bot.run(token)
 
