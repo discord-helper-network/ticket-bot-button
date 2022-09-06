@@ -1,4 +1,4 @@
 discord.py==1.7.3
-discord-components==2.1.2
+https://github.com/kiki7000/discord.py-components/archive/refs/tags/2.1.2.tar.gz
 asyncio==3.4.3
 discord-py-interactions==3.0.2
